@@ -269,7 +269,7 @@ skip("handle bindable rowHeight with multi-height (only fallback case)", functio
 
   this.render();
 
-  var positionSorted = sortItemsByPosition(this);
+  sortItemsByPosition(this);
   assert.equal(findItems(this).length, 4);
   assert.equal(view.get('totalHeight'), 3750);
 
@@ -303,7 +303,7 @@ skip("handle bindable rowHeight with multi-height (only fallback case)", functio
 
   Ember.run(view, 'set', 'rowHeight', 200);
 
-  positionSorted = sortItemsByPosition(this);
+  sortItemsByPosition(this);
   assert.equal(findItems(this).length, 3);
   assert.equal(view.get('totalHeight'), 5550);
 

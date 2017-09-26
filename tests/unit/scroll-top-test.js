@@ -3,6 +3,8 @@ import { test, moduleForComponent } from 'ember-qunit';
 import { findScrollable, generateContent, sortItemsByPosition, checkContent } from '../helpers/helpers';
 import template from '../templates/fixed-grid';
 
+const { $ } = Ember;
+
 var raf = window.requestAnimationFrame;
 if (raf === undefined) {
     raf = function(callback) {

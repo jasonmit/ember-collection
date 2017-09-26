@@ -6,6 +6,7 @@ import {
 import fixedGridTemplate from '../templates/fixed-grid';
 import indexedTemplate from '../templates/indexed';
 
+const { $ } = Ember;
 
 var nItems = 100;
 var itemWidth = 100;
@@ -176,4 +177,3 @@ test("indexes update correctly", function(assert) {
     );
   });
 });
-

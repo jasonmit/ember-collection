@@ -1,5 +1,7 @@
 import Ember from 'ember';
-const { get } = Ember;
+
+const { get, $ } = Ember;
+
 var compile = Ember.Handlebars.compile;
 
 function generateContent(n) {
