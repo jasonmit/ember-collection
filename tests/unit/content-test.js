@@ -6,19 +6,20 @@ import {
 import fixedGridTemplate from '../templates/fixed-grid';
 import indexedTemplate from '../templates/indexed';
 
+const { $ } = Ember;
 
-var nItems = 100;
-var itemWidth = 100;
-var itemHeight = 40;
-var width = 500;
-var height = 400;
+let nItems = 100;
+let itemWidth = 100;
+let itemHeight = 40;
+let width = 500;
+let height = 400;
 
 moduleForComponent('ember-collection', 'manipulate content', {
   integration: true
 });
 
 test("replacing the list content", function(assert) {
-  var content = generateContent(nItems);
+  let content = generateContent(nItems);
 
   Ember.run(()=>{
     this.setProperties({height, width, itemHeight, itemWidth, content});
@@ -37,7 +38,7 @@ test("replacing the list content", function(assert) {
 });
 
 test("adding to the front of the list content", function(assert) {
-  var content = generateContent(nItems);
+  let content = generateContent(nItems);
 
   Ember.run(()=>{
     this.setProperties({height, width, itemHeight, itemWidth, content});
@@ -48,12 +49,12 @@ test("adding to the front of the list content", function(assert) {
     content.unshiftObject({name: "Item -1"});
   });
 
-  var positionSorted = sortItemsByPosition(this);
+  let positionSorted = sortItemsByPosition(this);
   assert.equal(
     Ember.$(positionSorted[0]).text().trim(),
     "Item -1", "The item has been inserted in the list");
 
-  var expectedRows = Math.ceil((nItems + 1) / (width / itemWidth));
+  let expectedRows = Math.ceil((nItems + 1) / (width / itemWidth));
 
   assert.equal(
     findContainer(this).height(),
@@ -63,7 +64,7 @@ test("adding to the front of the list content", function(assert) {
 });
 
 test("inserting in the middle of visible content", function(assert) {
-  var content = generateContent(nItems);
+  let content = generateContent(nItems);
 
   Ember.run(()=>{
     this.setProperties({height, width, itemHeight, itemWidth, content});
@@ -74,7 +75,7 @@ test("inserting in the middle of visible content", function(assert) {
     content.insertAt(2, {name: "Item 2'"});
   });
 
-  var positionSorted = sortItemsByPosition(this);
+  let positionSorted = sortItemsByPosition(this);
   assert.equal(
     Ember.$(positionSorted[0]).text().trim(),
     "Item 1", "The item has been inserted in the list");
@@ -87,7 +88,7 @@ test("inserting in the middle of visible content", function(assert) {
 });
 
 test("clearing the content", function(assert) {
-  var content = generateContent(nItems);
+  let content = generateContent(nItems);
 
   Ember.run(()=>{
     this.setProperties({height, width, itemHeight, itemWidth, content});
@@ -104,14 +105,14 @@ test("clearing the content", function(assert) {
 });
 
 test("deleting the first element", function(assert) {
-  var content = generateContent(nItems);
+  let content = generateContent(nItems);
 
   Ember.run(()=>{
     this.setProperties({height, width, itemHeight, itemWidth, content});
     this.render(fixedGridTemplate);
   });
 
-  var positionSorted = sortItemsByPosition(this);
+  let positionSorted = sortItemsByPosition(this);
 
   assert.equal(
     Ember.$(positionSorted[0]).text().trim(),
@@ -130,7 +131,7 @@ test("deleting the first element", function(assert) {
 });
 
 test("working with an ArrayProxy", function(assert) {
-  var content = Ember.ArrayProxy.create({content: Ember.A(generateContent(nItems)) });
+  let content = Ember.ArrayProxy.create({content: Ember.A(generateContent(nItems)) });
 
   Ember.run(()=>{
     this.setProperties({height, width, itemHeight, itemWidth, content});
@@ -148,8 +149,8 @@ test("working with an ArrayProxy", function(assert) {
 });
 
 test("indexes update correctly", function(assert) {
-  var content = generateContent(30);
-  var filterIndexes  = [];
+  let content = generateContent(30);
+  let filterIndexes  = [];
 
   Ember.run(()=>{
     this.setProperties({height, width, itemHeight, itemWidth, content, filterIndexes});
@@ -176,4 +177,3 @@ test("indexes update correctly", function(assert) {
     );
   });
 });
-
